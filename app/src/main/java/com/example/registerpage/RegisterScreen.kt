@@ -52,13 +52,6 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
     val dateDialogState = rememberMaterialDialogState()
 
     val context = LocalContext.current
-//    val formattedDate by remember {
-//        derivedStateOf {
-//            DateTimeFormatter
-//                .ofPattern("MMM dd yyyy")
-//                .format(pickedDate)
-//        }
-//    }
 
     Column(modifier = Modifier.padding(24.dp)) {
 
@@ -135,19 +128,17 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
                 .height(65.dp)
                 .padding(8.dp)
         ) {
-            Text(text = "Birthday")
+            if (pickedDate == LocalDate.now().toString())
+                Text(text = "Birthday")
+            else {
+                Text(text = "Birthday : $pickedDate")
+            }
         }
-
 
         MaterialDialog(
             dialogState = dateDialogState,
             buttons = {
                 positiveButton(text = "Ok") {
-                    Toast.makeText(
-                        context,
-                        "Selected date is $",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
                 negativeButton(text = "Cancel")
             }
