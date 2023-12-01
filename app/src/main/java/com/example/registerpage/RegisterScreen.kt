@@ -1,6 +1,5 @@
 package com.example.registerpage
 
-import android.icu.text.CaseMap.Title
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
@@ -22,11 +21,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -38,7 +36,7 @@ import java.time.LocalDate
 
 @RequiresApi(Build.VERSION_CODES.Q)
 @Composable
-fun RegisterScreen(navController: NavHostController) {
+fun RegisterScreen(navController: NavHostController, userSessionManager: UserSessionManager) {
 
     var name by remember {
         mutableStateOf("")
@@ -169,7 +167,18 @@ fun RegisterScreen(navController: NavHostController) {
 
         Button(
             onClick = {
-                navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
+//                navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
+
+                    // Validate the input fields before navigating
+                    if (validateInputFields()) {
+                        // Save user information to session manager
+                        userSessionManager.saveUserInfo(name, lastName, idNumber, pickedDate)
+                        userSessionManager.saveSignUpStatus(true)
+                        // Navigate to UserInfoScreen
+                        navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
+                    } else {
+                        // Show an error message or handle validation failure
+                    }
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -178,5 +187,10 @@ fun RegisterScreen(navController: NavHostController) {
             Text(text = "Register")
         }
     }
+}
+//  Validate your input fields here
+fun validateInputFields(): Boolean {
+    // Implement your validation logic, return true if valid, false otherwise
+    return true
 }
 

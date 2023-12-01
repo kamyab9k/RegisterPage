@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun UserInfoScreen(name: String?, lastName: String?, id: String?, pickedDate: String?) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -36,7 +37,7 @@ fun UserInfoScreen(name: String?, lastName: String?, id: String?, pickedDate: St
 
         Button(
             onClick = {
-//                perform exit
+//              navController.popBackStack()
             },
             modifier = Modifier
                 .fillMaxWidth()

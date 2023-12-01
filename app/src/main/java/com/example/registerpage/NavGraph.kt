@@ -1,5 +1,6 @@
 package com.example.registerpage
 
+import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
@@ -9,9 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 
-@RequiresApi(Build.VERSION_CODES.Q)
+
 @Composable
-fun SetupNavGraph(navController: NavHostController) {
+fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSessionManager,) {
     NavHost(
         navController = navController,
         startDestination = Screen.Register.route
@@ -19,7 +20,8 @@ fun SetupNavGraph(navController: NavHostController) {
         composable(
             route = Screen.Register.route
         ) {
-            RegisterScreen(navController)
+            RegisterScreen(navController, userSessionManager)
+
         }
 
         composable(
