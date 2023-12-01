@@ -6,20 +6,20 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.registerpage.data.session.UserSessionManager
 import com.example.registerpage.ui.screen.RegisterScreen
 import com.example.registerpage.ui.screen.UserInfoScreen
+import com.example.registerpage.ui.viewModel.RegisterViewModel
 
 
 @Composable
-fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSessionManager) {
+fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterViewModel) {
 
     NavHost(
 
         navController = navController,
 
         startDestination =
-        if (userSessionManager.getSignUpStatus()) {
+        if (registerViewModel.signUpStatus) {
             Screen.UserInfo.route
         } else {
             Screen.Register.route
@@ -28,7 +28,7 @@ fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSess
         composable(
             route = Screen.Register.route
         ) {
-            RegisterScreen(navController, userSessionManager)
+            RegisterScreen(navController, registerViewModel)
         }
 
         composable(
@@ -48,11 +48,11 @@ fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSess
                 }
             )
         ) {
-            val name = userSessionManager.getName()
-            val lastName = userSessionManager.getLastName()
-            val id = userSessionManager.getIdNumber()
-            val pickedDate = userSessionManager.getPickedDate()
-            UserInfoScreen(name = name, lastName = lastName, id = id, pickedDate = pickedDate,userSessionManager,navController)
+            val name = registerViewModel.userInformation.name
+            val lastName = registerViewModel.userInformation.lastName
+            val id = registerViewModel.userInformation.idNumber
+            val pickedDate = registerViewModel.userInformation.pickedDate
+            UserInfoScreen(name = name, lastName = lastName, id = id, pickedDate = pickedDate,navController,registerViewModel)
         }
     }
 }

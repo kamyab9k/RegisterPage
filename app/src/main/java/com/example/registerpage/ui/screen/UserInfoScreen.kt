@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.registerpage.ui.navigationCompose.Screen
-import com.example.registerpage.data.session.UserSessionManager
+import com.example.registerpage.ui.viewModel.RegisterViewModel
 
 @Composable
 fun UserInfoScreen(
@@ -31,8 +31,9 @@ fun UserInfoScreen(
     lastName: String?,
     id: String?,
     pickedDate: String?,
-    userSessionManager: UserSessionManager,
+//    userSessionManager: UserSessionManager,
     navController: NavHostController,
+    registerViewModel: RegisterViewModel
 ) {
     val context = LocalContext.current
 
@@ -60,26 +61,26 @@ fun UserInfoScreen(
                 CustomDivider()
             }
             item {
-                DataItem("Name : ", name.orEmpty())
+                DataItem("Name : ", registerViewModel.userInformation.name.orEmpty())
             }
             item {
                 CustomDivider()
             }
 
             item {
-                DataItem("Last Name : ", lastName.orEmpty())
+                DataItem("Last Name : ", registerViewModel.userInformation.lastName.orEmpty())
             }
             item {
                 CustomDivider()
             }
             item {
-                DataItem("ID Number : ", id.orEmpty())
+                DataItem("ID Number : ", registerViewModel.userInformation.idNumber.orEmpty())
             }
             item {
                 CustomDivider()
             }
             item {
-                DataItem("Picked Date : ", pickedDate.orEmpty())
+                DataItem("Picked Date : ", registerViewModel.userInformation.pickedDate.orEmpty())
             }
             item {
                 CustomDivider()
@@ -97,7 +98,7 @@ fun UserInfoScreen(
         Spacer(modifier = Modifier.height(128.dp))
         Button(
             onClick = {
-                userSessionManager.clearSession()
+                registerViewModel.clearSession()
                 navController.popBackStack()
                 navController.navigate(route = Screen.Register.route)
             },

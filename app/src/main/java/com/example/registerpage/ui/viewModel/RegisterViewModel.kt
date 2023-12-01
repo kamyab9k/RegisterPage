@@ -6,6 +6,7 @@ import com.example.registerpage.data.repository.UserRepository
 
 class RegisterViewModel(private val userRepository: UserRepository) : ViewModel() {
 
+
     val signUpStatus = userRepository.getSignUpStatus()
 
     val userInformation = userRepository.getUserData()
@@ -22,5 +23,4 @@ class RegisterViewModel(private val userRepository: UserRepository) : ViewModel(
         val newUser = UserInformation(name, lastName, idNumber, pickedDate)
         userRepository.saveUserData(newUser)
     }
-
 }
