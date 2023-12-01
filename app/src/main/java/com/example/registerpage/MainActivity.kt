@@ -9,6 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.example.registerpage.data.session.UserSessionManager
+import com.example.registerpage.ui.navigationCompose.SetupNavGraph
 
 class MainActivity : ComponentActivity() {
     private lateinit var userSessionManager: UserSessionManager

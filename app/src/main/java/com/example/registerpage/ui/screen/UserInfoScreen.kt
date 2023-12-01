@@ -1,4 +1,4 @@
-package com.example.registerpage
+package com.example.registerpage.ui.screen
 
 import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
@@ -22,7 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-
+import com.example.registerpage.ui.navigationCompose.Screen
+import com.example.registerpage.data.session.UserSessionManager
 
 @Composable
 fun UserInfoScreen(

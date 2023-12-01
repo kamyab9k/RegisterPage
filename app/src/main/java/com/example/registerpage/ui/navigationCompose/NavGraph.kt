@@ -1,4 +1,4 @@
-package com.example.registerpage
+package com.example.registerpage.ui.navigationCompose
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -6,6 +6,9 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.registerpage.data.session.UserSessionManager
+import com.example.registerpage.ui.screen.RegisterScreen
+import com.example.registerpage.ui.screen.UserInfoScreen
 
 
 @Composable
