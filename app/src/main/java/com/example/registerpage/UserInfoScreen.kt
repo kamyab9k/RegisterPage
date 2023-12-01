@@ -1,7 +1,6 @@
 package com.example.registerpage
 
 import android.app.Activity
-import android.content.Context
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,6 +26,7 @@ fun UserInfoScreen(
     userSessionManager: UserSessionManager,
     navController: NavHostController,
 ) {
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -58,6 +58,16 @@ fun UserInfoScreen(
         ) {
             Text(text = "Log Out")
         }
+        Button(
+            onClick = {
+                (context as? Activity)?.finish()
+                navController.popBackStack()
+            },
+            modifier = Modifier
+                .fillMaxWidth()
 
+        ) {
+            Text(text = "Exit")
+        }
     }
 }
