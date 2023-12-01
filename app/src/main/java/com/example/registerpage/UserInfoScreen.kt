@@ -43,7 +43,7 @@ fun UserInfoScreen(name: String?, lastName: String?, id: String?, pickedDate: St
                 .fillMaxWidth()
 
         ) {
-            Text(text = "Exit")
+            Text(text = "Log Out")
         }
 
     }

@@ -1,8 +1,5 @@
 package com.example.registerpage
 
-import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -13,7 +10,9 @@ import androidx.navigation.navArgument
 
 @Composable
 fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSessionManager) {
+
     NavHost(
+
         navController = navController,
 
         startDestination =
@@ -45,7 +44,7 @@ fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSess
                     type = NavType.StringType
                 }
             )
-        ) { navBackStackEntry ->
+        ) {
             val name = userSessionManager.getName()
             val lastName = userSessionManager.getLastName()
             val id = userSessionManager.getIdNumber()

@@ -1,7 +1,5 @@
 package com.example.registerpage
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,7 +19,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -34,7 +31,6 @@ import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 
 
-@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun RegisterScreen(navController: NavHostController, userSessionManager: UserSessionManager) {
 
@@ -137,8 +133,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
         ) {
             Text(text = "Birthday")
         }
-//        Text(text = formattedDate)
-//        Spacer(modifier = Modifier.height(16.dp))
+
 
         MaterialDialog(
             dialogState = dateDialogState,
@@ -167,18 +162,16 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
 
         Button(
             onClick = {
-//                navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
-
-                    // Validate the input fields before navigating
-                    if (validateInputFields()) {
-                        // Save user information to session manager
-                        userSessionManager.saveUserInfo(name, lastName, idNumber, pickedDate)
-                        userSessionManager.saveSignUpStatus(true)
-                        // Navigate to UserInfoScreen
-                        navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
-                    } else {
-                        // Show an error message or handle validation failure
-                    }
+                // Validate the input fields before navigating
+                if (validateInputFields()) {
+                    // Save user information to session manager
+                    userSessionManager.saveUserInfo(name, lastName, idNumber, pickedDate)
+                    userSessionManager.saveSignUpStatus(true)
+                    // Navigate to UserInfoScreen
+                    navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
+                } else {
+                    // Show an error message or handle validation failure
+                }
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -188,6 +181,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
         }
     }
 }
+
 //  Validate your input fields here
 fun validateInputFields(): Boolean {
     // Implement your validation logic, return true if valid, false otherwise

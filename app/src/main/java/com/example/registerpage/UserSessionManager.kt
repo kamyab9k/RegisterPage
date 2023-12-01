@@ -3,12 +3,10 @@ package com.example.registerpage
 import android.content.Context
 
 class UserSessionManager(context: Context) {
+
     private val sharedPreferences =
         context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
     private val isSignedUpKey = "is_signed_up"
-
-//    fun saveUserSession(userId: String) {
-//        sharedPreferences.edit().putString("userId", userId).apply()}
 
     // Save the signup status
     fun saveSignUpStatus(isSignedUp: Boolean) {
@@ -34,7 +32,7 @@ class UserSessionManager(context: Context) {
         editor.putString("name", name)
         editor.putString("lastName", lastName)
         editor.putString("idNumber", idNumber)
-        editor.putString("pickedDate", pickedDate.toString())
+        editor.putString("pickedDate", pickedDate)
         editor.apply()
     }
 
