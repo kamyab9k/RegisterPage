@@ -27,7 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.registerpage.data.session.UserSessionManager
+import com.example.registerpage.ui.viewModel.RegisterViewModel
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
@@ -35,7 +35,7 @@ import java.time.LocalDate
 
 
 @Composable
-fun RegisterScreen(navController: NavHostController, userSessionManager: UserSessionManager) {
+fun RegisterScreen(navController: NavHostController,  registerViewModel: RegisterViewModel) {
 
     var name by remember {
         mutableStateOf("")
@@ -161,8 +161,8 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
                 // Validate the input fields before navigating
                 if (validateInputFields(name, lastName, idNumber, pickedDate)) {
                     // Save user information to session manager
-                    userSessionManager.saveUserInfo(name, lastName, idNumber, pickedDate)
-                    userSessionManager.saveSignUpStatus(true)
+                    registerViewModel.saveUserData(name, lastName, idNumber, pickedDate)
+                    registerViewModel.saveSignUpStatus(true)
                     navController.popBackStack()
                     // Navigate to UserInfoScreen
                     navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
