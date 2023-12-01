@@ -12,16 +12,21 @@ import androidx.navigation.navArgument
 
 
 @Composable
-fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSessionManager,) {
+fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSessionManager) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Register.route
+
+        startDestination =
+        if (userSessionManager.getSignUpStatus()) {
+            Screen.UserInfo.route
+        } else {
+            Screen.Register.route
+        }
     ) {
         composable(
             route = Screen.Register.route
         ) {
             RegisterScreen(navController, userSessionManager)
-
         }
 
         composable(
@@ -35,17 +40,17 @@ fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSess
                 },
                 navArgument(name = "id_key") {
                     type = NavType.StringType
-                } ,
+                },
                 navArgument(name = "pickedDate_key") {
                     type = NavType.StringType
                 }
             )
         ) { navBackStackEntry ->
-            val name = navBackStackEntry.arguments?.getString("name_key")
-            val lastName = navBackStackEntry.arguments?.getString("lastName_key")
-            val id = navBackStackEntry.arguments?.getString("id_key")
-            val pickedDate = navBackStackEntry.arguments?.getString("pickedDate_key")
-           UserInfoScreen(name = name, lastName =lastName, id = id, pickedDate =pickedDate)
+            val name = userSessionManager.getName()
+            val lastName = userSessionManager.getLastName()
+            val id = userSessionManager.getIdNumber()
+            val pickedDate = userSessionManager.getPickedDate()
+            UserInfoScreen(name = name, lastName = lastName, id = id, pickedDate = pickedDate)
         }
     }
 }

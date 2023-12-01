@@ -45,7 +45,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
         mutableStateOf("")
     }
     var pickedDate by remember {
-        mutableStateOf(LocalDate.now())
+        mutableStateOf(LocalDate.now().toString())
     }
     var idNumber by remember {
         mutableStateOf("")
@@ -158,10 +158,10 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
                 initialDate = LocalDate.now(),
                 title = "Pick a date",
                 allowedDateValidator = {
-                    pickedDate >= it
+                    pickedDate >= it.toString()
                 }
             ) {
-                pickedDate = it
+                pickedDate = it.toString()
             }
         }
 

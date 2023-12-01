@@ -64,7 +64,6 @@ fun RegistrationContent(navController: NavHostController, userSessionManager: Us
 }
 
 
-
 @Composable
 fun AppUI(navController: NavHostController, userSessionManager: UserSessionManager) {
     SetupNavGraph(navController = navController, userSessionManager = userSessionManager)
