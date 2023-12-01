@@ -56,6 +56,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
 //                .format(pickedDate)
 //        }
 //    }
+
     Column(modifier = Modifier.padding(24.dp)) {
 
         Spacer(modifier = Modifier.height(64.dp))
@@ -167,6 +168,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
                     // Save user information to session manager
                     userSessionManager.saveUserInfo(name, lastName, idNumber, pickedDate)
                     userSessionManager.saveSignUpStatus(true)
+                    navController.popBackStack()
                     // Navigate to UserInfoScreen
                     navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {

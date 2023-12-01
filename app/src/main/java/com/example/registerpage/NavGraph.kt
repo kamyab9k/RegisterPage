@@ -49,7 +49,7 @@ fun SetupNavGraph(navController: NavHostController, userSessionManager: UserSess
             val lastName = userSessionManager.getLastName()
             val id = userSessionManager.getIdNumber()
             val pickedDate = userSessionManager.getPickedDate()
-            UserInfoScreen(name = name, lastName = lastName, id = id, pickedDate = pickedDate)
+            UserInfoScreen(name = name, lastName = lastName, id = id, pickedDate = pickedDate,userSessionManager,navController)
         }
     }
 }
