@@ -1,5 +1,6 @@
 package com.example.registerpage
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,6 +20,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -49,6 +51,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
 
     val dateDialogState = rememberMaterialDialogState()
 
+    val context = LocalContext.current
 //    val formattedDate by remember {
 //        derivedStateOf {
 //            DateTimeFormatter
@@ -140,11 +143,11 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
             dialogState = dateDialogState,
             buttons = {
                 positiveButton(text = "Ok") {
-//                    Toast.makeText(
-//                        context,
-//                        "show selected date here",
-//                        Toast.LENGTH_LONG
-//                    ).show()
+                    Toast.makeText(
+                        context,
+                        "Selected date is $",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
                 negativeButton(text = "Cancel")
             }
@@ -164,7 +167,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
         Button(
             onClick = {
                 // Validate the input fields before navigating
-                if (validateInputFields()) {
+                if (validateInputFields(name, lastName, idNumber, pickedDate)) {
                     // Save user information to session manager
                     userSessionManager.saveUserInfo(name, lastName, idNumber, pickedDate)
                     userSessionManager.saveSignUpStatus(true)
@@ -172,7 +175,7 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
                     // Navigate to UserInfoScreen
                     navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {
-                    // Show an error message or handle validation failure
+                    Toast.makeText(context, "Please fill in all blanks", Toast.LENGTH_SHORT).show()
                 }
             },
             modifier = Modifier
@@ -184,9 +187,13 @@ fun RegisterScreen(navController: NavHostController, userSessionManager: UserSes
     }
 }
 
-//  Validate your input fields here
-fun validateInputFields(): Boolean {
-    // Implement your validation logic, return true if valid, false otherwise
-    return true
+fun validateInputFields(
+    name: String,
+    lastName: String,
+    idNumber: String,
+    pickedDate: String,
+): Boolean {
+    return name.isNotBlank() && lastName.isNotBlank() && idNumber.isNotBlank() && pickedDate.isNotBlank() && pickedDate != LocalDate.now()
+        .toString()
 }
 
