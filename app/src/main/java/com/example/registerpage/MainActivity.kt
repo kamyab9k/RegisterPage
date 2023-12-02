@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppUI(
                 navController = rememberNavController(),
-                registerViewModel=registerViewModel
+                registerViewModel = registerViewModel
             )
         }
     }

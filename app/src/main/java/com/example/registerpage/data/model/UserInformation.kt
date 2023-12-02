@@ -1,6 +1,5 @@
 package com.example.registerpage.data.model
 
-
 data class UserInformation(
     var name: String?,
     var lastName: String?,

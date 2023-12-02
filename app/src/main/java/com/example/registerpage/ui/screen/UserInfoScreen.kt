@@ -15,8 +15,6 @@ import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -30,9 +28,9 @@ import com.example.registerpage.ui.viewModel.RegisterViewModel
 @Composable
 fun UserInfoScreen(
     navController: NavHostController,
-    registerViewModel: RegisterViewModel
+    registerViewModel: RegisterViewModel,
 ) {
-    val userInformationList by registerViewModel.userLiveData.observeAsState(emptyList())
+
     val context = LocalContext.current
 
     Column(
@@ -59,26 +57,26 @@ fun UserInfoScreen(
                 CustomDivider()
             }
             item {
-                DataItem("Name : ", userInformationList.firstOrNull()?.name.orEmpty())
+                registerViewModel.userinfo.name?.let { DataItem("Name : ", it) }
             }
             item {
                 CustomDivider()
             }
 
             item {
-                DataItem("Last Name : ", userInformationList.firstOrNull()?.lastName.orEmpty())
+                registerViewModel.userinfo.lastName?.let { DataItem("Name : ", it) }
             }
             item {
                 CustomDivider()
             }
             item {
-                DataItem("ID Number : ", userInformationList.firstOrNull()?.idNumber.orEmpty())
+                registerViewModel.userinfo.idNumber?.let { DataItem("Name : ", it) }
             }
             item {
                 CustomDivider()
             }
             item {
-                DataItem("Picked Date : ", userInformationList.firstOrNull()?.pickedDate.orEmpty())
+                registerViewModel.userinfo.pickedDate?.let { DataItem("Name : ", it) }
             }
             item {
                 CustomDivider()
