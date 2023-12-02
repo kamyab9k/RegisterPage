@@ -48,11 +48,11 @@ fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterV
                 }
             )
         ) {
-            val name = registerViewModel.userInformation.name
-            val lastName = registerViewModel.userInformation.lastName
-            val id = registerViewModel.userInformation.idNumber
-            val pickedDate = registerViewModel.userInformation.pickedDate
-            UserInfoScreen(name = name, lastName = lastName, id = id, pickedDate = pickedDate,navController,registerViewModel)
+//            val name = registerViewModel.userLiveData.value
+//            val lastName = registerViewModel.userInformation.lastName
+//            val id = registerViewModel.userInformation.idNumber
+//            val pickedDate = registerViewModel.userInformation.pickedDate
+            UserInfoScreen(navController,registerViewModel)
         }
     }
 }

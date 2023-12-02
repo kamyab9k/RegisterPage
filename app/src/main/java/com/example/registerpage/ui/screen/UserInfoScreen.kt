@@ -15,6 +15,8 @@ import androidx.compose.material.Button
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -27,14 +29,10 @@ import com.example.registerpage.ui.viewModel.RegisterViewModel
 
 @Composable
 fun UserInfoScreen(
-    name: String?,
-    lastName: String?,
-    id: String?,
-    pickedDate: String?,
-//    userSessionManager: UserSessionManager,
     navController: NavHostController,
     registerViewModel: RegisterViewModel
 ) {
+    val userInformationList by registerViewModel.userLiveData.observeAsState(emptyList())
     val context = LocalContext.current
 
     Column(
@@ -61,26 +59,26 @@ fun UserInfoScreen(
                 CustomDivider()
             }
             item {
-                DataItem("Name : ", registerViewModel.userInformation.name.orEmpty())
+                DataItem("Name : ", userInformationList.firstOrNull()?.name.orEmpty())
             }
             item {
                 CustomDivider()
             }
 
             item {
-                DataItem("Last Name : ", registerViewModel.userInformation.lastName.orEmpty())
+                DataItem("Last Name : ", userInformationList.firstOrNull()?.lastName.orEmpty())
             }
             item {
                 CustomDivider()
             }
             item {
-                DataItem("ID Number : ", registerViewModel.userInformation.idNumber.orEmpty())
+                DataItem("ID Number : ", userInformationList.firstOrNull()?.idNumber.orEmpty())
             }
             item {
                 CustomDivider()
             }
             item {
-                DataItem("Picked Date : ", registerViewModel.userInformation.pickedDate.orEmpty())
+                DataItem("Picked Date : ", userInformationList.firstOrNull()?.pickedDate.orEmpty())
             }
             item {
                 CustomDivider()
