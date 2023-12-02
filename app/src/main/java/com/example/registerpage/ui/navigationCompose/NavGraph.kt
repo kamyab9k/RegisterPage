@@ -15,7 +15,6 @@ import com.example.registerpage.ui.viewModel.RegisterViewModel
 fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterViewModel) {
 
     NavHost(
-
         navController = navController,
 
         startDestination =
@@ -48,10 +47,6 @@ fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterV
                 }
             )
         ) {
-//            val name = registerViewModel.userLiveData.value
-//            val lastName = registerViewModel.userInformation.lastName
-//            val id = registerViewModel.userInformation.idNumber
-//            val pickedDate = registerViewModel.userInformation.pickedDate
             UserInfoScreen(navController, registerViewModel)
         }
     }

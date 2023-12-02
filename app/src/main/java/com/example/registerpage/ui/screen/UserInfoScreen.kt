@@ -57,26 +57,26 @@ fun UserInfoScreen(
                 CustomDivider()
             }
             item {
-                registerViewModel.userinfo.name?.let { DataItem("Name : ", it) }
+                registerViewModel.getUserInfo().name?.let { DataItem("Name : ", it) }
             }
             item {
                 CustomDivider()
             }
 
             item {
-                registerViewModel.userinfo.lastName?.let { DataItem("Name : ", it) }
+                registerViewModel.getUserInfo().lastName?.let { DataItem("Last name : ", it) }
             }
             item {
                 CustomDivider()
             }
             item {
-                registerViewModel.userinfo.idNumber?.let { DataItem("Name : ", it) }
+                registerViewModel.getUserInfo().idNumber?.let { DataItem("ID number : ", it) }
             }
             item {
                 CustomDivider()
             }
             item {
-                registerViewModel.userinfo.pickedDate?.let { DataItem("Name : ", it) }
+                registerViewModel.getUserInfo().pickedDate?.let { DataItem("Birthday : ", it) }
             }
             item {
                 CustomDivider()

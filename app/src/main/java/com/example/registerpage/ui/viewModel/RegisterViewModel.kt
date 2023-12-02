@@ -9,13 +9,10 @@ class RegisterViewModel(context: Context) : ViewModel() {
 
     private val userRepository = UserRepository(context)
     val signUpStatus = userRepository.getSignUpStatus()
-    val userinfo = userRepository.getUserData()
 
-
-//   needs to be used?
-//    fun fetchUserInfo() {
-//        userRepository.getUserData()
-//    }
+    fun getUserInfo(): UserInformation {
+        return userRepository.getUserData()
+    }
 
     fun saveSignUpStatus(isSignedUp: Boolean) {
         userRepository.saveSignUpStatus(isSignedUp)

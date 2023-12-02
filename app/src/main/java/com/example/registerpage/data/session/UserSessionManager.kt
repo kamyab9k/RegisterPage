@@ -6,6 +6,7 @@ class UserSessionManager(context: Context) {
 
     private val sharedPreferences =
         context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
+
     private val isSignedUpKey = "is_signed_up"
 
     // Save the signup status
@@ -25,7 +26,6 @@ class UserSessionManager(context: Context) {
         editor.clear()
         editor.apply()
     }
-
 
     fun saveUserInfo(name: String, lastName: String, idNumber: String, pickedDate: String) {
         val editor = sharedPreferences.edit()

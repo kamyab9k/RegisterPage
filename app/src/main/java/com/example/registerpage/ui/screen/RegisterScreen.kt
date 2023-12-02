@@ -35,7 +35,7 @@ import java.time.LocalDate
 
 
 @Composable
-fun RegisterScreen(navController: NavHostController,  registerViewModel: RegisterViewModel) {
+fun RegisterScreen(navController: NavHostController, registerViewModel: RegisterViewModel) {
 
     var name by remember {
         mutableStateOf("")
