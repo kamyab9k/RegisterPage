@@ -2,28 +2,26 @@ package com.example.registerpage.data.repository
 
 import android.content.Context
 import com.example.registerpage.data.model.UserInformation
-import com.example.registerpage.data.session.UserSessionManager
+import com.example.registerpage.data.session.UserSharedPref
 
 class UserRepository(context: Context) {
 
-    private val userSessionManager = UserSessionManager(context)
+    private val userSharedPref = UserSharedPref(context)
 
-    // Save the signup status
     fun saveSignUpStatus(isSignedUp: Boolean) {
-        userSessionManager.saveSignUpStatus(isSignedUp)
+        userSharedPref.saveSignUpStatus(isSignedUp)
     }
 
-    // Get the signup status
     fun getSignUpStatus(): Boolean {
-        return userSessionManager.getSignUpStatus()
+        return userSharedPref.getSignUpStatus()
     }
 
     fun clearSession() {
-        userSessionManager.clearSession()
+        userSharedPref.clearSession()
     }
 
     fun saveUserData(userData: UserInformation) {
-        userSessionManager.saveUserInfo(
+        userSharedPref.saveUserInfo(
             userData.name.orEmpty(),
             userData.lastName.orEmpty(),
             userData.idNumber.orEmpty(),
@@ -33,10 +31,10 @@ class UserRepository(context: Context) {
 
     fun getUserData(): UserInformation {
         return UserInformation(
-            userSessionManager.getName(),
-            userSessionManager.getLastName(),
-            userSessionManager.getIdNumber(),
-            userSessionManager.getPickedDate()
+            userSharedPref.getName(),
+            userSharedPref.getLastName(),
+            userSharedPref.getIdNumber(),
+            userSharedPref.getPickedDate()
         )
     }
 }

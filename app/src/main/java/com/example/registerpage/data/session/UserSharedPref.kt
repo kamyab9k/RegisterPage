@@ -2,21 +2,19 @@ package com.example.registerpage.data.session
 
 import android.content.Context
 
-class UserSessionManager(context: Context) {
+class UserSharedPref(context: Context) {
 
     private val sharedPreferences =
         context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
 
     private val isSignedUpKey = "is_signed_up"
 
-    // Save the signup status
     fun saveSignUpStatus(isSignedUp: Boolean) {
         val editor = sharedPreferences.edit()
         editor.putBoolean(isSignedUpKey, isSignedUp)
         editor.apply()
     }
 
-    // Get the signup status
     fun getSignUpStatus(): Boolean {
         return sharedPreferences.getBoolean(isSignedUpKey, false)
     }

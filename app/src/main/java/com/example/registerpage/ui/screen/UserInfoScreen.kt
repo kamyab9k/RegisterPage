@@ -1,6 +1,5 @@
 package com.example.registerpage.ui.screen
 
-import android.app.Activity
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -17,11 +16,12 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.registerpage.R
 import com.example.registerpage.ui.navigationCompose.Screen
 import com.example.registerpage.ui.viewModel.RegisterViewModel
 
@@ -31,8 +31,6 @@ fun UserInfoScreen(
     registerViewModel: RegisterViewModel,
 ) {
 
-    val context = LocalContext.current
-
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -40,7 +38,9 @@ fun UserInfoScreen(
     ) {
         Spacer(modifier = Modifier.height(64.dp))
         Text(
-            text = "User Information",
+            text = stringResource(
+                id = R.string.user_info_title
+            ),
             fontSize = 24.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
@@ -57,26 +57,50 @@ fun UserInfoScreen(
                 CustomDivider()
             }
             item {
-                registerViewModel.getUserInfo().name?.let { DataItem("Name : ", it) }
+                registerViewModel.getUserInfo().name?.let {
+                    DataItem(
+                        stringResource(
+                            id = R.string.name_info
+                        ), it
+                    )
+                }
             }
             item {
                 CustomDivider()
             }
 
             item {
-                registerViewModel.getUserInfo().lastName?.let { DataItem("Last name : ", it) }
+                registerViewModel.getUserInfo().lastName?.let {
+                    DataItem(
+                        stringResource(
+                            id = R.string.lastname_info
+                        ), it
+                    )
+                }
             }
             item {
                 CustomDivider()
             }
             item {
-                registerViewModel.getUserInfo().idNumber?.let { DataItem("ID number : ", it) }
+                registerViewModel.getUserInfo().idNumber?.let {
+                    DataItem(
+                        stringResource(
+                            id = R.string.id_number_info
+                        ), it
+                    )
+                }
             }
             item {
                 CustomDivider()
             }
             item {
-                registerViewModel.getUserInfo().pickedDate?.let { DataItem("Birthday : ", it) }
+                registerViewModel.getUserInfo().pickedDate?.let {
+                    DataItem(
+                        stringResource(
+                            id = R.string.Birthday_info
+                        ), it
+                    )
+                }
             }
             item {
                 CustomDivider()
@@ -91,7 +115,6 @@ fun UserInfoScreen(
         verticalArrangement = Arrangement.Center,
 
         ) {
-        Spacer(modifier = Modifier.height(128.dp))
         Button(
             onClick = {
                 registerViewModel.clearSession()
@@ -101,19 +124,11 @@ fun UserInfoScreen(
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Text(text = "Log Out", modifier = Modifier.padding(start = 8.dp))
-        }
-
-        Button(
-            onClick = {
-                (context as? Activity)?.finish()
-                navController.popBackStack()
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp)
-        ) {
-            Text(text = "Exit", modifier = Modifier.padding(start = 8.dp))
+            Text(
+                stringResource(
+                    id = R.string.button_logout_info
+                ), modifier = Modifier.padding(start = 8.dp)
+            )
         }
     }
 }

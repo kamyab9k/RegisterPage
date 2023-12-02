@@ -13,11 +13,13 @@ import com.example.registerpage.ui.navigationCompose.SetupNavGraph
 import com.example.registerpage.ui.viewModel.RegisterViewModel
 
 class MainActivity : ComponentActivity() {
+
     private lateinit var registerViewModel: RegisterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        registerViewModel = RegisterViewModel(application)
+
+        registerViewModel = RegisterViewModel(this)
 
         setContent {
             AppUI(

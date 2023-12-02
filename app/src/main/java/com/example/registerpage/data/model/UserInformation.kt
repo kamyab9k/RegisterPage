@@ -4,7 +4,7 @@ data class UserInformation(
     var name: String?,
     var lastName: String?,
     var idNumber: String?,
-    var pickedDate: String?,
+    var pickedDate: String?
 )
 
 

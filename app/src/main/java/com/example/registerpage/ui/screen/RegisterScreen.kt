@@ -21,18 +21,19 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.registerpage.R
 import com.example.registerpage.ui.viewModel.RegisterViewModel
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
-
 
 @Composable
 fun RegisterScreen(navController: NavHostController, registerViewModel: RegisterViewModel) {
@@ -58,14 +59,18 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
 
         Spacer(modifier = Modifier.height(64.dp))
         Text(
-            "Welcome",
+            stringResource(
+                id = R.string.welcome
+            ),
             fontSize = 38.sp,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
 
         Text(
-            text = "Let's get started by filling in the blanks",
+            stringResource(
+                id = R.string.welcome_description
+            ),
             fontSize = 16.sp,
             fontWeight = FontWeight.Light
         )
@@ -86,7 +91,11 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 name = it
             },
             label = {
-                Text("Name")
+                Text(
+                    stringResource(
+                        id = R.string.input_field_name_label
+                    )
+                )
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -99,20 +108,28 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 lastName = it
             },
             label = {
-                Text("Last name")
+                Text(
+                    stringResource(
+                        id = R.string.input_field_lastname_label
+                    )
+                )
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
         )
-        //        ID needs to be limited to 10 digits
+
         OutlinedTextField(
             value = idNumber,
             onValueChange = {
                 idNumber = it
             },
             label = {
-                Text("ID number")
+                Text(
+                    stringResource(
+                        id = R.string.input_field_id_number_label
+                    )
+                )
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -130,7 +147,11 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 .padding(8.dp)
         ) {
             if (pickedDate == LocalDate.now().toString())
-                Text(text = "Birthday")
+                Text(
+                    stringResource(
+                        id = R.string.date_picker
+                    )
+                )
             else {
                 Text(text = "Birthday : $pickedDate")
             }
@@ -144,7 +165,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                 negativeButton(text = "Cancel")
             }
         ) {
-//            Has a bug when user wants to update the selected date again
+            // TODO: Has a bug when user wants to update the selected date again
             datepicker(
                 initialDate = LocalDate.now(),
                 title = "Pick a date",
@@ -158,23 +179,25 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
 
         Button(
             onClick = {
-                // Validate the input fields before navigating
                 if (validateInputFields(name, lastName, idNumber, pickedDate)) {
-                    // Save user information to session manager
                     registerViewModel.saveUserData(name, lastName, idNumber, pickedDate)
                     registerViewModel.saveSignUpStatus(true)
                     navController.popBackStack()
-                    // Navigate to UserInfoScreen
                     navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {
-                    Toast.makeText(context, "Please fill in all blanks", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Please fill in all the blanks", Toast.LENGTH_SHORT)
+                        .show()
                 }
             },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
         ) {
-            Text(text = "Register")
+            Text(
+                stringResource(
+                    id = R.string.button_register
+                )
+            )
         }
     }
 }
