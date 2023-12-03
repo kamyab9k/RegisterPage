@@ -7,11 +7,11 @@ A **Register** screen and a **UserInfo** screen.
 Techonologies used in this project :
 
 * Jetpack compose
-* shared preferences
+* Shared preferences
 * MVVM
 * User session management
 * Navigation compose
-* repository pattern
+* Repository pattern
 
   
 
