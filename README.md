@@ -2,7 +2,7 @@
 
 A **Register** screen and a **UserInfo** screen.
 
- When filled all the blanks and clicked register user is navigated to UserInfo screen.
+ When filled all the blanks and clicked register, user is navigated to UserInfo screen.
 
 Techonologies used in this project :
 
