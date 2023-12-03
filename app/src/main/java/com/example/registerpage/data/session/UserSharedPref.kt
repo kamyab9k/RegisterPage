@@ -3,7 +3,7 @@ package com.example.registerpage.data.session
 import android.content.Context
 
 class UserSharedPref(context: Context) {
-
+    
     private val sharedPreferences =
         context.getSharedPreferences("UserSession", Context.MODE_PRIVATE)
 
