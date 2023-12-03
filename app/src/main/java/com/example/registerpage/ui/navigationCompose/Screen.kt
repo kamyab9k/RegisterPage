@@ -1,5 +1,6 @@
 package com.example.registerpage.ui.navigationCompose
 
+
 sealed class Screen(val route: String) {
     data object Register :
         Screen(route = "register_screen")
