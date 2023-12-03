@@ -2,14 +2,11 @@ package com.example.registerpage.ui.navigationCompose
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
 import com.example.registerpage.ui.screen.RegisterScreen
 import com.example.registerpage.ui.screen.UserInfoScreen
 import com.example.registerpage.ui.viewModel.RegisterViewModel
-
 
 @Composable
 fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterViewModel) {
@@ -32,20 +29,6 @@ fun SetupNavGraph(navController: NavHostController, registerViewModel: RegisterV
 
         composable(
             route = Screen.UserInfo.route,
-            arguments = listOf(
-                navArgument(name = "name_key") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "lastName_key") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "id_key") {
-                    type = NavType.StringType
-                },
-                navArgument(name = "pickedDate_key") {
-                    type = NavType.StringType
-                }
-            )
         ) {
             UserInfoScreen(navController, registerViewModel)
         }
