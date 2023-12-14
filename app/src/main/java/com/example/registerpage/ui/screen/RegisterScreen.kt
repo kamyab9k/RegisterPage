@@ -38,6 +38,9 @@ import java.time.LocalDate
 @Composable
 fun RegisterScreen(navController: NavHostController, registerViewModel: RegisterViewModel) {
 
+    var inputValid by remember {
+        mutableStateOf(true)
+    }
     var name by remember {
         mutableStateOf("")
     }
@@ -96,7 +99,9 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                         id = R.string.input_field_name_label
                     )
                 )
+
             },
+            isError = name.isEmpty() && !inputValid,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp)
@@ -114,6 +119,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     )
                 )
             },
+            isError = lastName.isEmpty() && !inputValid,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
@@ -131,6 +137,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     )
                 )
             },
+            isError = idNumber.isEmpty() && !inputValid,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(8.dp),
@@ -185,6 +192,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     navController.popBackStack()
                     navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {
+                    inputValid = false
                     Toast.makeText(context, "Please fill in all the blanks", Toast.LENGTH_SHORT)
                         .show()
                 }

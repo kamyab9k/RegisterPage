@@ -30,7 +30,6 @@ fun UserInfoScreen(
     navController: NavHostController,
     registerViewModel: RegisterViewModel,
 ) {
-
     Column(
         modifier = Modifier
             .fillMaxSize()
