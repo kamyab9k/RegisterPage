@@ -193,6 +193,7 @@ fun RegisterScreen(navController: NavHostController, registerViewModel: Register
                     navController.navigate(route = "userInfo_screen/$name/$lastName/$idNumber/$pickedDate")
                 } else {
                     inputValid = false
+
                     Toast.makeText(context, "Please fill in all the blanks", Toast.LENGTH_SHORT)
                         .show()
                 }
